@@ -1,8 +1,11 @@
+import EmployeeForm from '@/components/EmployeeForm'
+
 const EmployeeAddPage = () => {
   return (
-    <div>
-      <h1>Add Employee</h1>
-    </div>
+    <>
+      <h1 className='text-2xl font-semibold capitalize'>Add new employee</h1>
+      <EmployeeForm />
+    </>
   )
 }
 

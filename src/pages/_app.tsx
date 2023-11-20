@@ -1,7 +1,7 @@
 import '@/styles/globals.css'
 import GroupIcon from '@mui/icons-material/Group'
 import HomeIcon from '@mui/icons-material/Home'
-import { Box, Divider, Drawer, List, ListItem, Toolbar } from '@mui/material'
+import { Box, Container, Divider, Drawer, List, ListItem, Toolbar } from '@mui/material'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 
@@ -44,7 +44,7 @@ const drawer = (
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div className='flex'>
+    <div className='flex h-screen bg-[#F9F9F9]'>
       <Box component='nav' sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }} aria-label='mailbox folders'>
         <Drawer
           variant='permanent'
@@ -60,7 +60,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
       <Box component='main' sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}>
         <Toolbar />
-        <Component {...pageProps} />
+        <Container maxWidth='xl' className='bg-white p-12 rounded-lg shadow-xl'>
+          <Component {...pageProps} />
+        </Container>
       </Box>
     </div>
   )
