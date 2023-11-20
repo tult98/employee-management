@@ -1,6 +1,6 @@
 import '@/styles/globals.css'
 import GroupIcon from '@mui/icons-material/Group'
-import PersonAddIcon from '@mui/icons-material/PersonAdd'
+import HomeIcon from '@mui/icons-material/Home'
 import { Box, Divider, Drawer, List, ListItem, Toolbar } from '@mui/material'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
@@ -10,14 +10,14 @@ import Link from 'next/link'
 
 const MENU_TABS = [
   {
-    id: 'add-employee',
-    label: 'Add employee',
-    icon: <PersonAddIcon />,
-    path: '/employees/add',
+    id: 'home',
+    label: 'Home',
+    icon: <HomeIcon />,
+    path: '/',
   },
   {
     id: 'employee-list',
-    label: 'Employee list',
+    label: 'Employees',
     icon: <GroupIcon />,
     path: '/employees',
   },
@@ -31,14 +31,12 @@ const drawer = (
     <Divider />
     <List>
       {MENU_TABS.map((tab) => (
-        <ListItem key={tab.id} disablePadding>
-          <Link href={tab.path}>
-            <ListItem>
-              <ListItemIcon>{tab.icon}</ListItemIcon>
-              <ListItemText primary={tab.label} />
-            </ListItem>
-          </Link>
-        </ListItem>
+        <Link key={tab.id} href={tab.path}>
+          <ListItem>
+            <ListItemIcon>{tab.icon}</ListItemIcon>
+            <ListItemText primary={tab.label} />
+          </ListItem>
+        </Link>
       ))}
     </List>
   </div>
