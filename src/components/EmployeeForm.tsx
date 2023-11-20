@@ -1,3 +1,4 @@
+import AvatarInputField from '@/components/AvatarInputField'
 import { IEmployee } from '@/types/employee'
 import { Box, Button, TextField } from '@mui/material'
 
@@ -14,6 +15,7 @@ const EmployeeForm = ({ employee, type = TYPE.CREATE }: IProps) => {
   return (
     <Box component='form' className='mt-12'>
       <div className='flex flex-col space-y-4'>
+        <AvatarInputField />
         <TextField required label='Name' defaultValue={employee?.name} />
         <TextField required label='Email' defaultValue={employee?.email} />
         <TextField required label='Address' defaultValue={employee?.address} />
