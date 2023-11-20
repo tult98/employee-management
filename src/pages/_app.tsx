@@ -5,6 +5,7 @@ import { Box, Container, Divider, Drawer, List, ListItem, Toolbar } from '@mui/m
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1'
 import type { AppProps } from 'next/app'
 import Link from 'next/link'
 import { ToastContainer } from 'react-toastify'
@@ -16,6 +17,12 @@ const MENU_TABS = [
     label: 'Home',
     icon: <HomeIcon />,
     path: '/',
+  },
+  {
+    id: 'add-employee',
+    label: 'New Employee',
+    icon: <PersonAddAlt1Icon />,
+    path: '/employees/add',
   },
   {
     id: 'employee-list',
