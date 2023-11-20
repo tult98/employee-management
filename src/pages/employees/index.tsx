@@ -5,19 +5,26 @@ import AddIcon from '@mui/icons-material/Add'
 import Button from '@mui/material/Button'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import useSWR from 'swr'
 import { getEmployees } from '@/services/employee'
 import { IEmployee } from '@/types/employee'
+import { toast } from 'react-toastify'
 
 const EmployeeListPage = () => {
   const router = useRouter()
 
-  const { data, isLoading, error } = useSWR<IEmployee[]>('/employees', getEmployees)
+  const { data, isLoading, error } = useSWR<IEmployee[]>('/employees', getEmployees, { shouldRetryOnError: false })
 
   const onEditEmployee = (id: number) => {
     router.push(`employees/${id}/edit`)
   }
+
+  useEffect(() => {
+    if (error) {
+      toast.error('Cannot get the employees data at the moment')
+    }
+  }, [error])
 
   const columns: GridColDef[] = useMemo(
     () => [
@@ -59,13 +66,7 @@ const EmployeeListPage = () => {
           </Button>
         </Link>
       </div>
-      <DataGrid
-        className='h-[400px]'
-        rows={data ?? []}
-        loading={isLoading}
-        columns={columns}
-        rowSelection={false}
-      />
+      <DataGrid className='h-[400px]' rows={data ?? []} loading={isLoading} columns={columns} rowSelection={false} />
     </div>
   )
 }

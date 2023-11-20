@@ -7,6 +7,8 @@ import ListItemText from '@mui/material/ListItemText'
 
 import type { AppProps } from 'next/app'
 import Link from 'next/link'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const MENU_TABS = [
   {
@@ -64,6 +66,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </Container>
       </Box>
+      <ToastContainer />
     </div>
   )
 }
