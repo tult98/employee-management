@@ -6,20 +6,14 @@ import Button from '@mui/material/Button'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
-
-const rows: GridRowsProp = [
-  {
-    id: 1,
-    name: 'Tu Le Thanh',
-    email: 'lethanhtu1551998@gmail.com',
-    address: 'Hanoi, Vietnam',
-    age: 25,
-    salary: '1000',
-  },
-]
+import useSWR from 'swr'
+import { getEmployees } from '@/services/employee'
+import { IEmployee } from '@/types/employee'
 
 const EmployeeListPage = () => {
   const router = useRouter()
+
+  const { data, isLoading, error } = useSWR<IEmployee[]>('/employees', getEmployees)
 
   const onEditEmployee = (id: number) => {
     router.push(`employees/${id}/edit`)
@@ -65,7 +59,13 @@ const EmployeeListPage = () => {
           </Button>
         </Link>
       </div>
-      <DataGrid autoHeight rows={rows} columns={columns} rowSelection={false} />
+      <DataGrid
+        className='h-[400px]'
+        rows={data ?? []}
+        loading={isLoading}
+        columns={columns}
+        rowSelection={false}
+      />
     </div>
   )
 }

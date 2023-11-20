@@ -60,7 +60,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
       <Box component='main' sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}>
         <Toolbar />
-        <Container maxWidth='xl' className='bg-white p-12 rounded-lg shadow-xl'>
+        <Container maxWidth='xl' className='bg-white p-8 rounded-lg shadow-xl'>
           <Component {...pageProps} />
         </Container>
       </Box>
