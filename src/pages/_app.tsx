@@ -1,7 +1,7 @@
 import '@/styles/globals.css'
 import GroupIcon from '@mui/icons-material/Group'
 import HomeIcon from '@mui/icons-material/Home'
-import { Box, Container, Divider, Drawer, List, ListItem, Toolbar } from '@mui/material'
+import { Box, Container, Divider, Drawer, List, ListItem, ListItemButton, Toolbar } from '@mui/material'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 
@@ -10,6 +10,8 @@ import type { AppProps } from 'next/app'
 import Link from 'next/link'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useRouter } from 'next/router'
+import { useEffect, useMemo } from 'react'
 
 const MENU_TABS = [
   {
@@ -34,24 +36,29 @@ const MENU_TABS = [
 
 const drawerWidth = 240
 
-const drawer = (
-  <div>
-    <Toolbar />
-    <Divider />
-    <List>
-      {MENU_TABS.map((tab) => (
-        <Link key={tab.id} href={tab.path}>
-          <ListItem>
-            <ListItemIcon>{tab.icon}</ListItemIcon>
-            <ListItemText primary={tab.label} />
-          </ListItem>
-        </Link>
-      ))}
-    </List>
-  </div>
-)
-
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter()
+
+  const drawer = useMemo(
+    () => (
+      <div>
+        <Toolbar />
+        <Divider />
+        <List>
+          {MENU_TABS.map((tab) => (
+            <Link key={tab.id} href={tab.path}>
+              <ListItemButton selected={router.pathname === tab.path}>
+                <ListItemIcon>{tab.icon}</ListItemIcon>
+                <ListItemText primary={tab.label} />
+              </ListItemButton>
+            </Link>
+          ))}
+        </List>
+      </div>
+    ),
+    [router.pathname]
+  )
+
   return (
     <div className='flex h-screen bg-[#F9F9F9]'>
       <Box component='nav' sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }} aria-label='mailbox folders'>
