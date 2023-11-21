@@ -1,5 +1,7 @@
+import { TYPE } from '@/components/EmployeeForm'
 import { request } from '@/services/request'
 import { IEmployee } from '@/types/employee'
+import { AxiosError } from 'axios'
 
 export const getEmployees = async () => {
   try {
@@ -11,12 +13,17 @@ export const getEmployees = async () => {
   }
 }
 
-export const createEmployee = async (employee: IEmployee) => {
+export const createOrUpdateEmployee = async (url: string, { arg }: { arg: { employee: IEmployee; type: TYPE } }) => {
   try {
-    const response = await request.post('/employees', employee)
+    let response
+    if (arg.type === TYPE.CREATE) {
+      response = await request.post(url, arg.employee)
+    } else {
+      response = await request.put(url, arg.employee)
+    }
+
     return response.data
-  } catch (error) {
+  } catch (error: any) {
     console.error(error)
-    throw error
   }
 }

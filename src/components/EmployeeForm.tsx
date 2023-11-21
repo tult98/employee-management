@@ -1,8 +1,14 @@
 import AvatarInputField from '@/components/AvatarInputField'
+import { createOrUpdateEmployee } from '@/services/employee'
 import { IEmployee } from '@/types/employee'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Box, Button, Input, TextField } from '@mui/material'
+import { Box, Button, TextField } from '@mui/material'
+import CircularProgress from '@mui/material/CircularProgress'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
+import useSWRMutation from 'swr/mutation'
 import * as yup from 'yup'
 
 export enum TYPE {
@@ -18,28 +24,55 @@ const schema = yup.object().shape({
   name: yup.string().required('Name is required'),
   email: yup.string().email('Invalid email format').required('Email is required'),
   address: yup.string().required('Address is required'),
-  age: yup.number().integer('Age must be an integer').required('Age is required'),
+  age: yup
+    .number()
+    .integer('Age must be an integer')
+    .positive('Age must be a positive number')
+    .required('Age is required'),
   salary: yup.number().positive('Salary must be a positive number').required('Salary is required'),
   profile_image: yup.string().url('Invalid URL format for profile image').required('Profile image URL is required'),
 })
 
 const EmployeeForm = ({ employee, type = TYPE.CREATE }: IProps) => {
+  const router = useRouter()
   const {
     handleSubmit,
     control,
-    watch,
     formState: { errors },
+  } = useForm<IEmployee>({
     // @ts-expect-error
-  } = useForm<IEmployee>({ resolver: yupResolver(schema), mode: 'onBlur', reValidateMode: 'onSubmit' })
+    resolver: yupResolver(schema),
+    mode: 'onBlur',
+    reValidateMode: 'onSubmit',
+    defaultValues: employee,
+  })
+
+  const { trigger, isMutating, data } = useSWRMutation(
+    type === TYPE.CREATE ? '/employees' : employee ? `/employees/${employee.id}` : undefined,
+    createOrUpdateEmployee
+  )
 
   const onSubmit = (data: IEmployee) => {
-    console.log('================data', data)
+    trigger({ type, employee: data })
   }
+
+  useEffect(() => {
+    if (data && !isMutating) {
+      toast.success(`${type} employee successfully`)
+    }
+    if (data && !isMutating && type === TYPE.CREATE) {
+      router.push('/employees')
+    }
+  }, [data, isMutating])
 
   return (
     <Box component='form' className='mt-12' onSubmit={handleSubmit(onSubmit)}>
       <div className='flex flex-col space-y-4'>
-        <Controller name='profile_image' control={control} render={({ field }) => <AvatarInputField {...field} />} />
+        <Controller
+          name='profile_image'
+          control={control}
+          render={({ field }) => <AvatarInputField error={errors.profile_image} {...field} />}
+        />
 
         <Controller
           name='name'
@@ -59,13 +92,7 @@ const EmployeeForm = ({ employee, type = TYPE.CREATE }: IProps) => {
           name='address'
           control={control}
           render={({ field }) => (
-            <TextField
-            
-              error={!!errors.address}
-              helperText={errors.address?.message}
-              label='Address *'
-              {...field}
-            />
+            <TextField error={!!errors.address} helperText={errors.address?.message} label='Address *' {...field} />
           )}
         />
         <Controller
@@ -84,7 +111,13 @@ const EmployeeForm = ({ employee, type = TYPE.CREATE }: IProps) => {
         />
       </div>
       <div className='w-full flex justify-end'>
-        <Button variant='contained' color='primary' type='submit' className='bg-blue-500 mt-8 min-w-[150px]'>
+        <Button
+          variant='contained'
+          color='primary'
+          type='submit'
+          className='bg-blue-500 mt-8 min-w-[150px]'
+          startIcon={isMutating ?? <CircularProgress />}
+        >
           {type}
         </Button>
       </div>

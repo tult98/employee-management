@@ -14,7 +14,7 @@ const EmployeeEditPage = ({ employee }: { employee: IEmployee | undefined }) => 
   return (
     <>
       <h1 className='text-2xl font-semibold'>Edit employee</h1>
-      <EmployeeForm employee={employee} type={TYPE.CREATE} />
+      <EmployeeForm employee={employee} type={TYPE.EDIT} />
     </>
   )
 }
