@@ -1,15 +1,34 @@
+import { uploadImage } from '@/services/cloudinray'
 import PhotoCamera from '@mui/icons-material/PhotoCamera'
 import Avatar from '@mui/material/Avatar'
 import IconButton from '@mui/material/IconButton'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
-const AvatarInputField = () => {
-  const [avatar, setAvatar] = useState('')
+const AvatarInputField = ({ onChange }: any) => {
   const [isHover, setIsHover] = useState(false)
+  const [avatarObjectUrl, setAvatarObjectUrl] = useState('')
+  const [avatar, setAvatar] = useState<File>()
 
   const handleAvatarChange = (event: any) => {
-    setAvatar(event?.target?.files[0] ? URL.createObjectURL(event.target.files[0]) : '')
+    setAvatar(event?.target?.files[0])
+    setAvatarObjectUrl(event?.target?.files[0] ? URL.createObjectURL(event.target.files[0]) : '')
   }
+
+  useEffect(() => {
+    ;(async () => {
+      if (avatar) {
+        try {
+          const url = await uploadImage(avatar)
+          onChange(url)
+          toast.success('Your image has been uploaded to server')
+        } catch (error) {
+          console.log('error', error)
+          toast.error('Upload image failed. Please choose another image...')
+        }
+      }
+    })()
+  }, [avatar])
 
   const handleMouseEnter = () => {
     setIsHover(true)
@@ -29,7 +48,7 @@ const AvatarInputField = () => {
       >
         <Avatar
           alt='Avatar'
-          src={avatar}
+          src={avatarObjectUrl}
           sx={{ width: 120, height: 120 }}
           variant='square'
           className={`${isHover ? 'opacity-30' : 'opacity-100'}`}
