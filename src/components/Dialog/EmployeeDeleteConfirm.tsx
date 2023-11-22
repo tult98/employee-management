@@ -7,6 +7,7 @@ import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 import { KeyedMutator } from 'swr'
 import useSWRMutation from 'swr/mutation'
@@ -19,6 +20,7 @@ interface IProps {
 }
 
 export default function EmployeeDeleteConfirm({ isOpen, setIsOpen, employee, mutate }: IProps) {
+  const { t } = useTranslation()
   const { data, isMutating, trigger, error } = useSWRMutation(
     employee ? `/employees/${employee.id}` : undefined,
     deleteEmployee,
@@ -35,13 +37,13 @@ export default function EmployeeDeleteConfirm({ isOpen, setIsOpen, employee, mut
 
   useEffect(() => {
     if (error) {
-      toast.error(error.message)
+      toast.error(t('Something went wrong. Please try again later'))
       return
     }
 
     if (data && !isMutating) {
       setIsOpen(false)
-      toast.success('Employee deleted successfully')
+      toast.success(t('Employee deleted successfully'))
       mutate()
       return
     }
@@ -57,7 +59,7 @@ export default function EmployeeDeleteConfirm({ isOpen, setIsOpen, employee, mut
       <DialogTitle id='alert-dialog-title'>Delete </DialogTitle>
       <DialogContent>
         <DialogContentText id='alert-dialog-description'>
-          Are you sure to delete this employee, this action cannot be undone.
+          {t('Are you sure to delete this employee, this action cannot be undone.')}
         </DialogContentText>
       </DialogContent>
       <DialogActions>

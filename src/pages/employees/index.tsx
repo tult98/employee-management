@@ -9,10 +9,12 @@ import { DataGrid, GridActionsCellItem, GridColDef, GridRowParams } from '@mui/x
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 import useSWR from 'swr'
 
 const EmployeeListPage = () => {
+  const { t } = useTranslation()
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const [selectedEmployee, setSelectedEmployee] = useState<IEmployee>()
@@ -32,17 +34,17 @@ const EmployeeListPage = () => {
 
   useEffect(() => {
     if (error) {
-      toast.error(error.message)
+      toast.error(t('Something went wrong. Please try again later'))
     }
   }, [error])
 
   const columns: GridColDef[] = useMemo(
     () => [
-      { field: 'name', headerName: 'Name', type: 'string', flex: 1 },
-      { field: 'email', headerName: 'Email', type: 'string', flex: 1.5 },
-      { field: 'address', headerName: 'Address', type: 'string', flex: 1 },
-      { field: 'age', headerName: 'Age', type: 'number', flex: 0.5 },
-      { field: 'salary', headerName: 'Salary', type: 'number', flex: 0.5 },
+      { field: 'name', headerName: t('Name'), type: 'string', flex: 1 },
+      { field: 'email', headerName: t('Email'), type: 'string', flex: 1.5 },
+      { field: 'address', headerName: t('Address'), type: 'string', flex: 1 },
+      { field: 'age', headerName: t('Age'), type: 'number', flex: 0.5 },
+      { field: 'salary', headerName: t('Salary'), type: 'number', flex: 0.5 },
       {
         field: 'actions',
         type: 'actions',
@@ -63,16 +65,16 @@ const EmployeeListPage = () => {
         ],
       },
     ],
-    []
+    [t]
   )
 
   return (
     <div className='w-full'>
       <div className='flex justify-between mb-4'>
-        <h1 className='text-2xl font-semibold '>Employees</h1>
+        <h1 className='text-2xl font-semibold '>{t('Employees')}</h1>
         <Link href='/employees/add'>
           <Button component='label' variant='contained' startIcon={<AddIcon />}>
-            Add new employee
+            {t('Add new employee')}
           </Button>
         </Link>
       </div>

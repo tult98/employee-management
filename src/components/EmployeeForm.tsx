@@ -5,8 +5,9 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { Box, Button, TextField } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { Controller, useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 import useSWRMutation from 'swr/mutation'
 import * as yup from 'yup'
@@ -20,21 +21,30 @@ interface IProps {
   type?: TYPE
 }
 
-const schema = yup.object().shape({
-  name: yup.string().required('Name is required'),
-  email: yup.string().email('Invalid email format').required('Email is required'),
-  address: yup.string().required('Address is required'),
-  age: yup
-    .number()
-    .integer('Age must be an integer')
-    .positive('Age must be a positive number')
-    .required('Age is required'),
-  salary: yup.number().positive('Salary must be a positive number').required('Salary is required'),
-  profile_image: yup.string().url('Invalid URL format for profile image').required('Profile image URL is required'),
-})
-
 const EmployeeForm = ({ employee, type = TYPE.CREATE }: IProps) => {
+  const { t } = useTranslation()
   const router = useRouter()
+
+  const schema = useMemo(
+    () =>
+      yup.object().shape({
+        name: yup.string().required(t('Name is required')),
+        email: yup.string().email(t('Invalid email format')).required(t('Email is required')),
+        address: yup.string().required(t('Address is required')),
+        age: yup
+          .number()
+          .integer(t('Age must be an integer'))
+          .positive(t('Age must be a positive number'))
+          .required(t('Age is required')),
+        salary: yup.number().positive(t('Salary must be a positive number')).required(t('Salary is required')),
+        profile_image: yup
+          .string()
+          .url(t('Invalid URL format for profile image'))
+          .required(t('Profile image URL is required')),
+      }),
+    [t]
+  )
+
   const {
     handleSubmit,
     control,
@@ -59,7 +69,7 @@ const EmployeeForm = ({ employee, type = TYPE.CREATE }: IProps) => {
 
   useEffect(() => {
     if (error) {
-      toast.error(error.message)
+      toast.error(t('Something went wrong. Please try again later'))
       return
     }
     if (data && !isMutating) {
@@ -83,35 +93,45 @@ const EmployeeForm = ({ employee, type = TYPE.CREATE }: IProps) => {
           name='name'
           control={control}
           render={({ field }) => (
-            <TextField error={!!errors.name} helperText={errors.name?.message} label='Name *' {...field} />
+            <TextField error={!!errors.name} helperText={errors.name?.message} label={`${t('Name')} *`} {...field} />
           )}
         />
         <Controller
           name='email'
           control={control}
           render={({ field }) => (
-            <TextField error={!!errors.email} helperText={errors.email?.message} label='Email *' {...field} />
+            <TextField error={!!errors.email} helperText={errors.email?.message} label={`${t('Email')} *`} {...field} />
           )}
         />
         <Controller
           name='address'
           control={control}
           render={({ field }) => (
-            <TextField error={!!errors.address} helperText={errors.address?.message} label='Address *' {...field} />
+            <TextField
+              error={!!errors.address}
+              helperText={errors.address?.message}
+              label={`${t('Address')} *`}
+              {...field}
+            />
           )}
         />
         <Controller
           name='age'
           control={control}
           render={({ field }) => (
-            <TextField error={!!errors.age} helperText={errors.age?.message} label='Age *' {...field} />
+            <TextField error={!!errors.age} helperText={errors.age?.message} label={`${t('Age')} *`} {...field} />
           )}
         />
         <Controller
           name='salary'
           control={control}
           render={({ field }) => (
-            <TextField error={!!errors.salary} helperText={errors.salary?.message} label='Salary *' {...field} />
+            <TextField
+              error={!!errors.salary}
+              helperText={errors.salary?.message}
+              label={`${t('Salary')} *`}
+              {...field}
+            />
           )}
         />
       </div>
@@ -123,7 +143,7 @@ const EmployeeForm = ({ employee, type = TYPE.CREATE }: IProps) => {
           className='bg-blue-500 mt-8 min-w-[150px]'
           startIcon={isMutating ?? <CircularProgress />}
         >
-          {type}
+          {type === TYPE.CREATE ? t('Create') : t('Edit')}
         </Button>
       </div>
     </Box>

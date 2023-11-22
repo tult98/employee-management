@@ -3,9 +3,11 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera'
 import Avatar from '@mui/material/Avatar'
 import IconButton from '@mui/material/IconButton'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 
 const AvatarInputField = ({ onChange, value, error }: any) => {
+  const { t } = useTranslation()
   const [isHover, setIsHover] = useState(false)
   const [avatarObjectUrl, setAvatarObjectUrl] = useState<string>()
   const [avatar, setAvatar] = useState<File>()
@@ -21,10 +23,10 @@ const AvatarInputField = ({ onChange, value, error }: any) => {
         try {
           const url = await uploadImage(avatar)
           onChange(url)
-          toast.success('Your image has been uploaded to server')
+          toast.success(t('Your image has been uploaded to server'))
         } catch (error) {
           console.log('error', error)
-          toast.error('Upload image failed. Please choose another image...')
+          toast.error(t('Upload image failed. Please try again later'))
         }
       }
     })()

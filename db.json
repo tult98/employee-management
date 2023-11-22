@@ -122,15 +122,6 @@
       "name": "Jennifer",
       "email": "jennifer@example.com",
       "address": "Hai Phong, Vietnam"
-    },
-    {
-      "profile_image": "https://res.cloudinary.com/dfbib0vvt/image/upload/v1700579967/My%20Uploads/hikrljenbmtb38tnzoxu.jpg",
-      "salary": 10000,
-      "age": 25,
-      "address": "FPT Tower, Phạm Văn Bạch, Cầu Giấy, Hà Nội",
-      "email": "lethanhtu1551998@gmail.com",
-      "name": "Tu Le Thanh edit",
-      "id": 15
     }
   ]
 }

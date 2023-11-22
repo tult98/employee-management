@@ -1,43 +1,50 @@
 import '@/styles/globals.css'
 import GroupIcon from '@mui/icons-material/Group'
 import HomeIcon from '@mui/icons-material/Home'
-import { Box, Container, Divider, Drawer, List, ListItem, ListItemButton, Toolbar } from '@mui/material'
+import { Box, Container, Divider, Drawer, List, ListItemButton, Toolbar } from '@mui/material'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1'
 import type { AppProps } from 'next/app'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { appWithI18Next } from 'ni18n'
+import { useMemo } from 'react'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { useRouter } from 'next/router'
-import { useEffect, useMemo } from 'react'
-
-const MENU_TABS = [
-  {
-    id: 'home',
-    label: 'Home',
-    icon: <HomeIcon />,
-    path: '/',
-  },
-  {
-    id: 'add-employee',
-    label: 'New Employee',
-    icon: <PersonAddAlt1Icon />,
-    path: '/employees/add',
-  },
-  {
-    id: 'employee-list',
-    label: 'Employees',
-    icon: <GroupIcon />,
-    path: '/employees',
-  },
-]
+import { ni18nConfig } from '../../ni18n.config'
+import { useTranslation } from 'react-i18next'
 
 const drawerWidth = 240
 
-export default function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
+  const { t } = useTranslation()
+
+  const MENU_TABS = useMemo(
+    () => [
+      {
+        id: 'home',
+        label: t('Home'),
+        icon: <HomeIcon />,
+        path: '/',
+      },
+      {
+        id: 'add-employee',
+        label: t('New Employee'),
+        icon: <PersonAddAlt1Icon />,
+        path: '/employees/add',
+      },
+      {
+        id: 'employee-list',
+        label: t('Employees'),
+        icon: <GroupIcon />,
+        path: '/employees',
+      },
+    ],
+    [t]
+  )
 
   const drawer = useMemo(
     () => (
@@ -56,7 +63,7 @@ export default function App({ Component, pageProps }: AppProps) {
         </List>
       </div>
     ),
-    [router.pathname]
+    [router.pathname, MENU_TABS]
   )
 
   return (
@@ -84,3 +91,5 @@ export default function App({ Component, pageProps }: AppProps) {
     </div>
   )
 }
+
+export default appWithI18Next(App, ni18nConfig)
