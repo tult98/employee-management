@@ -27,3 +27,12 @@ export const createOrUpdateEmployee = async (url: string, { arg }: { arg: { empl
     console.error(error)
   }
 }
+
+export const deleteEmployee = async (url: string) => {
+  try {
+    const response = await request.delete(url)
+    return response.data
+  } catch (error) {
+    console.error(error)
+  }
+}

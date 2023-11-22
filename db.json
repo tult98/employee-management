@@ -131,33 +131,6 @@
       "email": "lethanhtu1551998@gmail.com",
       "name": "Tu Le Thanh edit",
       "id": 15
-    },
-    {
-      "profile_image": "https://res.cloudinary.com/dfbib0vvt/image/upload/v1700580877/My%20Uploads/hcn03whm2xdvzjgpkndh.png",
-      "salary": 20000,
-      "age": 30,
-      "address": "FPT Tower, Phạm Văn Bạch, Cầu Giấy, Hà Nội",
-      "email": "lethanhtu1551998@gmail.com",
-      "name": "Lê Thanh Tú edit",
-      "id": 16
-    },
-    {
-      "profile_image": "https://res.cloudinary.com/dfbib0vvt/image/upload/v1700584398/My%20Uploads/yizdridczy1i7ngnms01.png",
-      "salary": 10000,
-      "age": 30,
-      "address": "Co Nhue 2, Bac Tu Liem",
-      "email": "lethanhtu1551998@gmail.com",
-      "name": "Tu Le Thanh 2 edit 123",
-      "id": 17
-    },
-    {
-      "profile_image": "https://res.cloudinary.com/dfbib0vvt/image/upload/v1700584337/My%20Uploads/wlyuolwspqngfoqmzixz.jpg",
-      "salary": 100,
-      "age": 100,
-      "address": "Co Nhue 2, Bac Tu Liem",
-      "email": "lethanhtu1551998@gmail.com",
-      "name": "Tu Le Thanh 3",
-      "id": 18
     }
   ]
 }
