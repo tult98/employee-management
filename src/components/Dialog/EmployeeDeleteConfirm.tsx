@@ -6,7 +6,7 @@ import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
-import * as React from 'react'
+import { useEffect } from 'react'
 import { toast } from 'react-toastify'
 import { KeyedMutator } from 'swr'
 import useSWRMutation from 'swr/mutation'
@@ -19,9 +19,10 @@ interface IProps {
 }
 
 export default function EmployeeDeleteConfirm({ isOpen, setIsOpen, employee, mutate }: IProps) {
-  const { data, isMutating, trigger } = useSWRMutation(
+  const { data, isMutating, trigger, error } = useSWRMutation(
     employee ? `/employees/${employee.id}` : undefined,
-    deleteEmployee
+    deleteEmployee,
+    { throwOnError: false }
   )
 
   const handleClose = () => {
@@ -32,14 +33,19 @@ export default function EmployeeDeleteConfirm({ isOpen, setIsOpen, employee, mut
     trigger()
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
+    if (error) {
+      toast.error(error.message)
+      return
+    }
+
     if (data && !isMutating) {
       setIsOpen(false)
       toast.success('Employee deleted successfully')
       mutate()
       return
     }
-  }, [isMutating, data])
+  }, [isMutating, data, error])
 
   return (
     <Dialog

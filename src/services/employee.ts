@@ -1,7 +1,6 @@
 import { TYPE } from '@/components/EmployeeForm'
 import { request } from '@/services/request'
 import { IEmployee } from '@/types/employee'
-import { AxiosError } from 'axios'
 
 export const getEmployees = async () => {
   try {
@@ -25,6 +24,7 @@ export const createOrUpdateEmployee = async (url: string, { arg }: { arg: { empl
     return response.data
   } catch (error: any) {
     console.error(error)
+    throw error
   }
 }
 
@@ -34,5 +34,6 @@ export const deleteEmployee = async (url: string) => {
     return response.data
   } catch (error) {
     console.error(error)
+    throw error
   }
 }

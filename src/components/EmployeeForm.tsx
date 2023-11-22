@@ -47,9 +47,10 @@ const EmployeeForm = ({ employee, type = TYPE.CREATE }: IProps) => {
     defaultValues: employee,
   })
 
-  const { trigger, isMutating, data } = useSWRMutation(
+  const { trigger, isMutating, data, error } = useSWRMutation(
     type === TYPE.CREATE ? '/employees' : employee ? `/employees/${employee.id}` : undefined,
-    createOrUpdateEmployee
+    createOrUpdateEmployee,
+    { throwOnError: false }
   )
 
   const onSubmit = (data: IEmployee) => {
@@ -57,13 +58,17 @@ const EmployeeForm = ({ employee, type = TYPE.CREATE }: IProps) => {
   }
 
   useEffect(() => {
+    if (error) {
+      toast.error(error.message)
+      return
+    }
     if (data && !isMutating) {
       toast.success(`${type} employee successfully`)
     }
     if (data && !isMutating && type === TYPE.CREATE) {
       router.push('/employees')
     }
-  }, [data, isMutating])
+  }, [data, isMutating, error])
 
   return (
     <Box component='form' className='mt-12' onSubmit={handleSubmit(onSubmit)}>
