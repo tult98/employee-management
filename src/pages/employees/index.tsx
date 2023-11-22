@@ -17,7 +17,9 @@ const EmployeeListPage = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [selectedEmployee, setSelectedEmployee] = useState<IEmployee>()
 
-  const { data, isLoading, error, mutate } = useSWR<IEmployee[]>('/employees', getEmployees, { shouldRetryOnError: false })
+  const { data, isLoading, error, mutate } = useSWR<IEmployee[]>('/employees', getEmployees, {
+    shouldRetryOnError: false,
+  })
 
   const onEditEmployee = (id: number) => {
     router.push(`employees/${id}/edit`)
@@ -30,7 +32,7 @@ const EmployeeListPage = () => {
 
   useEffect(() => {
     if (error) {
-      toast.error('Cannot get the employees data at the moment')
+      toast.error(error.message)
     }
   }, [error])
 
