@@ -116,12 +116,6 @@
       "age": 39,
       "salary": "1400",
       "profile_image": ""
-    },
-    {
-      "id": 14,
-      "name": "Jennifer",
-      "email": "jennifer@example.com",
-      "address": "Hai Phong, Vietnam"
     }
   ]
 }

@@ -47,11 +47,13 @@ const BaseLayout = ({ children }: { children: React.ReactNode }) => {
     () => (
       <div>
         <Toolbar />
-        <Divider />
         <List>
           {MENU_TABS.map((tab) => (
             <Link key={tab.id} href={tab.path}>
-              <ListItemButton selected={router.pathname === tab.path}>
+              <ListItemButton
+                classes={{ root: 'mx-4 hover:bg-transparent focus:bg-transparent', selected: 'rounded-full' }}
+                selected={router.pathname === tab.path}
+              >
                 <ListItemIcon>{tab.icon}</ListItemIcon>
                 <ListItemText primary={tab.label} />
               </ListItemButton>
