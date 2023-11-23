@@ -81,7 +81,7 @@ const EmployeeListPage = () => {
             </Button>
           </Link>
         </div>
-        <DataGrid className='h-[400px]' rows={data ?? []} loading={isLoading} columns={columns} rowSelection={false} />
+        <DataGrid className='min-h-[400px]' autoHeight rows={data ?? []} loading={isLoading} columns={columns} rowSelection={false} />
         <EmployeeDeleteConfirm isOpen={isOpen} setIsOpen={setIsOpen} employee={selectedEmployee} mutate={mutate} />
       </div>
     </BaseLayout>
