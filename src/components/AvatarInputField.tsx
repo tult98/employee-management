@@ -3,7 +3,7 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera'
 import Avatar from '@mui/material/Avatar'
 import IconButton from '@mui/material/IconButton'
 import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 import { toast } from 'react-toastify'
 
 const AvatarInputField = ({ onChange, value, error }: any) => {
