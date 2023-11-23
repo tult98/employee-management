@@ -8,7 +8,7 @@ const SelectLanguage = () => {
   }
 
   return (
-    <div className='flex fixed top-4 right-4 p-2'>
+    <div className='flex absolute top-4 right-4 p-2'>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         fill='none'

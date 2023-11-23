@@ -15,6 +15,8 @@ import { useEffect, useMemo, useState } from 'react'
 import { toast } from 'react-toastify'
 import useSWR from 'swr'
 
+const headerClassName = 'bg-[#F9FAFB]'
+
 const EmployeeListPage = () => {
   const { t } = useTranslation()
   const router = useRouter()
@@ -42,15 +44,16 @@ const EmployeeListPage = () => {
 
   const columns: GridColDef[] = useMemo(
     () => [
-      { field: 'name', headerName: t('Name'), type: 'string', flex: 1 },
-      { field: 'email', headerName: t('Email'), type: 'string', flex: 1.5 },
-      { field: 'address', headerName: t('Address'), type: 'string', flex: 1 },
-      { field: 'age', headerName: t('Age'), type: 'number', flex: 0.5 },
-      { field: 'salary', headerName: t('Salary'), type: 'number', flex: 0.5 },
+      { field: 'name', headerName: t('Name'), type: 'string', flex: 1, headerClassName, cellClassName: 'text-blue-500' },
+      { field: 'email', headerName: t('Email'), type: 'string', flex: 1.5, headerClassName },
+      { field: 'address', headerName: t('Address'), type: 'string', flex: 1, headerClassName },
+      { field: 'age', headerName: t('Age'), type: 'number', flex: 0.5, headerClassName },
+      { field: 'salary', headerName: t('Salary'), type: 'number', flex: 0.5, headerClassName },
       {
         field: 'actions',
         type: 'actions',
         flex: 1,
+        headerClassName,
         getActions: (params: GridRowParams) => [
           <GridActionsCellItem
             key='edit button'
@@ -81,7 +84,15 @@ const EmployeeListPage = () => {
             </Button>
           </Link>
         </div>
-        <DataGrid className='min-h-[400px]' autoHeight rows={data ?? []} loading={isLoading} columns={columns} rowSelection={false} />
+        <DataGrid
+          sx={{ border: 'none' }}
+          className='min-h-[400px]'
+          autoHeight
+          rows={data ?? []}
+          loading={isLoading}
+          columns={columns}
+          rowSelection={false}
+        />
         <EmployeeDeleteConfirm isOpen={isOpen} setIsOpen={setIsOpen} employee={selectedEmployee} mutate={mutate} />
       </div>
     </BaseLayout>
