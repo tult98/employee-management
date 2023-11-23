@@ -11,6 +11,7 @@ import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import { useTranslation } from 'next-i18next'
 import 'react-toastify/dist/ReactToastify.css'
+import SelectLanguage from '@/components/SelectLanguage'
 
 const drawerWidth = 240
 
@@ -82,6 +83,7 @@ const BaseLayout = ({ children }: { children: React.ReactNode }) => {
           {children}
         </Container>
       </Box>
+      <SelectLanguage />
     </>
   )
 }

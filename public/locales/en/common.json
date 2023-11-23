@@ -28,5 +28,8 @@
   "Cannot get the employee data at the moment": "Cannot get the employee data at the moment",
   "Employee deleted successfully": "Employee deleted successfully",
   "Edit employee": "Edit employee",
-  "Something went wrong. Please try again later": "Something went wrong. Please try again later"
+  "Something went wrong. Please try again later": "Something went wrong. Please try again later",
+  "Delete": "Delete",
+  "Cancel": "Cancel",
+  "OK": "OK"
 }

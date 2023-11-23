@@ -56,15 +56,15 @@ export default function EmployeeDeleteConfirm({ isOpen, setIsOpen, employee, mut
       aria-labelledby='alert-dialog-title'
       aria-describedby='alert-dialog-description'
     >
-      <DialogTitle id='alert-dialog-title'>Delete </DialogTitle>
+      <DialogTitle id='alert-dialog-title'>{t('Delete')}</DialogTitle>
       <DialogContent>
         <DialogContentText id='alert-dialog-description'>
           {t('Are you sure to delete this employee, this action cannot be undone.')}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={onConfirmDelete}>OK</Button>
+        <Button onClick={handleClose}>{t('Cancel')}</Button>
+        <Button onClick={onConfirmDelete}>{t('OK')}</Button>
       </DialogActions>
     </Dialog>
   )

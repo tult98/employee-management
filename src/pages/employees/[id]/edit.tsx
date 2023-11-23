@@ -24,12 +24,18 @@ const EmployeeEditPage = ({ employee }: { employee: IEmployee | undefined }) => 
 }
 
 export const getServerSideProps = (async (context) => {
-  const { id, locale } = context.params as any
+  const { id } = context.params as any
+  const locale = context.locale ?? 'vi'
   try {
     const response = await request.get(`employees/${id}`)
-    return { props: { employee: response.data, ...(await serverSideTranslations(locale, ['common', 'footer'])) } }
+    return { props: { employee: response.data, ...(await serverSideTranslations(locale, ['common'])) } }
   } catch (error) {
-    return { props: { ...(await serverSideTranslations(locale, ['common', 'footer'])) } }
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, ['common'])),
+        // Will be passed to the page component as props
+      },
+    }
   }
 }) satisfies GetServerSideProps
 

@@ -24,5 +24,8 @@
   "Invalid URL format for profile image": "Định dạng URL ảnh đại diện không hợp lệ",
   "Profile image URL is required": "URL ảnh đại diện là bắt buộc",
   "Edit employee": "Sửa nhân viên",
-  "Something went wrong. Please try again later": "Đã xảy ra lỗi. Vui lòng thử lại sau"
+  "Something went wrong. Please try again later": "Đã xảy ra lỗi. Vui lòng thử lại sau",
+  "Delete": "Xoá",
+  "Cancel": "Thoát",
+  "OK": "Đồng ý"
 }
