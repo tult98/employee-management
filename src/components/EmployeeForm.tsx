@@ -140,7 +140,7 @@ const EmployeeForm = ({ employee, type = TYPE.CREATE }: IProps) => {
           variant='contained'
           color='primary'
           type='submit'
-          className='bg-blue-500 mt-8 min-w-[150px]'
+          className='bg-blue-500 !mt-8 !min-w-[150px]'
           startIcon={isMutating ?? <CircularProgress />}
         >
           {type === TYPE.CREATE ? t('Create') : t('Edit')}
