@@ -48,6 +48,8 @@ const EmployeeForm = ({ employee, type = TYPE.CREATE }: IProps) => {
   const {
     handleSubmit,
     control,
+    watch,
+    clearErrors,
     formState: { errors },
   } = useForm<IEmployee>({
     // @ts-expect-error
@@ -56,6 +58,12 @@ const EmployeeForm = ({ employee, type = TYPE.CREATE }: IProps) => {
     reValidateMode: 'onSubmit',
     defaultValues: employee,
   })
+
+  const watchProfileImage = watch('profile_image')
+
+  useEffect(() => {
+    clearErrors('profile_image')
+  }, [watchProfileImage])
 
   const { trigger, isMutating, data, error } = useSWRMutation(
     type === TYPE.CREATE ? '/employees' : employee ? `/employees/${employee.id}` : undefined,
