@@ -12,7 +12,7 @@ const SelectLanguage = () => {
 
   const handleLanguageChange = (language: string) => {
     setIsOpen(false)
-    router.push(router.pathname, router.pathname, { locale: language })
+    router.push(router.asPath, undefined, { locale: language })
   }
 
   return (
