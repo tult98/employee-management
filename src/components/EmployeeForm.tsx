@@ -11,6 +11,7 @@ import { useTranslation } from 'next-i18next'
 import { toast } from 'react-toastify'
 import useSWRMutation from 'swr/mutation'
 import * as yup from 'yup'
+import { useSWRConfig } from 'swr'
 
 export enum TYPE {
   CREATE = 'Create',
@@ -24,6 +25,7 @@ interface IProps {
 const EmployeeForm = ({ employee, type = TYPE.CREATE }: IProps) => {
   const { t } = useTranslation()
   const router = useRouter()
+  const { mutate } = useSWRConfig()
 
   const schema = useMemo(
     () =>
@@ -149,6 +151,7 @@ const EmployeeForm = ({ employee, type = TYPE.CREATE }: IProps) => {
           color='primary'
           type='submit'
           className='bg-blue-500 !mt-8 !min-w-[150px]'
+          disabled={isMutating}
           startIcon={isMutating ?? <CircularProgress />}
         >
           {type === TYPE.CREATE ? t('Create') : t('Edit')}
