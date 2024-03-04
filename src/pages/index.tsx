@@ -22,7 +22,7 @@ export default function Home() {
           <li>TailwindCSS</li>
           <li>i18next</li>
           <li>React Toastify for notification</li>
-          <li>React Query and axios for fetching API</li>
+          <li>SWR and axios for fetching API</li>
           <li>React Hook Form & yup for validation form</li>
           <li>Typescript</li>
         </ul>
