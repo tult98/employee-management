@@ -21,9 +21,7 @@ export const ListEmployeeContainer = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [selectedEmployee, setSelectedEmployee] = useState<IEmployee>()
 
-  const { data, isLoading, error, mutate } = useSWR<IEmployee[]>('/employees', getEmployees, {
-    shouldRetryOnError: false,
-  })
+  const { data, isLoading, error, mutate } = useSWR<IEmployee[]>('/employees', getEmployees)
 
   const onEditEmployee = useCallback(
     (id: number) => {

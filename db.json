@@ -1,13 +1,13 @@
 {
   "employees": [
     {
-      "id": 1,
-      "name": "John",
+      "name": "John updated",
       "email": "john@example.com",
       "address": "Hanoi, Vietnam",
       "age": 30,
-      "salary": "1000",
-      "profile_image": ""
+      "salary": 1000,
+      "profile_image": "https://res.cloudinary.com/dfbib0vvt/image/upload/v1709720127/My%20Uploads/qolgaeh3eo5uezc2yvuz.jpg",
+      "id": 1
     },
     {
       "id": 2,
