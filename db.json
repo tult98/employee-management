@@ -118,31 +118,13 @@
       "id": 13
     },
     {
-      "name": "Lê Thanh Tú",
+      "name": "Tu Le Thanh updated",
       "email": "lethanhtu1551998@gmail.com",
-      "address": "FPT Tower, Phạm Văn Bạch, Cầu Giấy, Hà Nội",
-      "age": 100,
-      "salary": 10000,
-      "profile_image": "https://res.cloudinary.com/dfbib0vvt/image/upload/v1709716406/My%20Uploads/xa00azqyjgjtddls72do.png",
+      "address": "Co Nhue 2, Bac Tu Liem",
+      "age": 1000,
+      "salary": 1000,
+      "profile_image": "https://res.cloudinary.com/dfbib0vvt/image/upload/v1709736646/My%20Uploads/r0hhrmwjgqdyn6pz65zt.webp",
       "id": 14
-    },
-    {
-      "name": "Tu Le Thanh",
-      "email": "lethanhtu1551998@gmail.com",
-      "address": "FPT Tower, Phạm Văn Bạch, Cầu Giấy, Hà Nội",
-      "age": 25,
-      "salary": 20000,
-      "profile_image": "https://res.cloudinary.com/dfbib0vvt/image/upload/v1709717313/My%20Uploads/kkbcobetntwqq7garccq.jpg",
-      "id": 15
-    },
-    {
-      "name": "test 1 updated",
-      "email": "lethanhtu1551998@gmail.com",
-      "address": "FPT Tower, Phạm Văn Bạch, Cầu Giấy, Hà Nội",
-      "age": 12,
-      "salary": 100000,
-      "profile_image": "https://res.cloudinary.com/dfbib0vvt/image/upload/v1709717379/My%20Uploads/e364zrvd8h2pc1k4wjgx.jpg",
-      "id": 16
     }
   ]
 }

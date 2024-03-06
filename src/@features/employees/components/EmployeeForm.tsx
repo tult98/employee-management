@@ -100,11 +100,8 @@ export const EmployeeForm = ({ employee, submitButtonLabel, isMutating, onSubmit
             color='primary'
             type='submit'
             disabled={isMutating}
-            sx={{
-              backgroundColor: '#3f51b5 !important',
-              '&:hover': { opacity: 0.8 },
-            }}
             startIcon={isMutating ?? <CircularProgress />}
+            className="bg-[#3f51b5] hover:opacity-80"
           >
             {submitButtonLabel}
           </Button>

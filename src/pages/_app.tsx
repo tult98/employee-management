@@ -9,7 +9,7 @@ import { SWRConfig } from 'swr'
 
 function App({ Component, pageProps }: AppProps) {
   return (
-    <SWRConfig value={{ revalidateIfStale: false, shouldRetryOnError: false, }}>
+    <SWRConfig value={{ shouldRetryOnError: false }}>
       <div className='flex h-screen bg-[#F9F9F9]'>
         <Component {...pageProps} />
         <ToastContainer />

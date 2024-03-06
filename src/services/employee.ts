@@ -34,9 +34,9 @@ export const editAnEmployee = async (employee: IEmployee, id?: number) => {
   }
 }
 
-export const deleteEmployee = async (url: string) => {
+export const deleteEmployee = async (id: number) => {
   try {
-    const response = await request.delete(url)
+    const response = await request.delete(`/employees/${id}`)
     return response.data
   } catch (error) {
     console.error(error)

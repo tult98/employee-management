@@ -26,7 +26,7 @@ export const AddEmployeeContainer = () => {
         router.push('/employees')
         setIsMutating(false)
 
-        return [...(employees ?? []), createdEmployee]
+        return [createdEmployee, ...(employees ?? [])]
       },
       rollbackOnError: () => {
         toast.error(t('Something went wrong. Please try again later'))

@@ -21,7 +21,7 @@ export const ListEmployeeContainer = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [selectedEmployee, setSelectedEmployee] = useState<IEmployee>()
 
-  const { data, isLoading, error, mutate } = useSWR<IEmployee[]>('/employees', getEmployees)
+  const { data, isLoading, error } = useSWR<IEmployee[]>('/employees', getEmployees)
 
   const onEditEmployee = useCallback(
     (id: number) => {
@@ -98,7 +98,7 @@ export const ListEmployeeContainer = () => {
         columns={columns}
         rowSelection={false}
       />
-      <EmployeeDeleteConfirm isOpen={isOpen} setIsOpen={setIsOpen} employee={selectedEmployee} mutate={mutate} />
+      <EmployeeDeleteConfirm isOpen={isOpen} setIsOpen={setIsOpen} employee={selectedEmployee} />
     </div>
   )
 }

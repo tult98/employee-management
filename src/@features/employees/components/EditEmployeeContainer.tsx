@@ -21,7 +21,7 @@ export const EditEmployeeContainer = ({ employee }: { employee?: IEmployee }) =>
       optimisticData: (employees) => {
         setIsMutating(true)
 
-        return [...(employees ?? []), data]
+        return [data, ...(employees ?? [])]
       },
       populateCache: (createdEmployee, employees) => {
         toast.success(`Edit employee successfully`)
