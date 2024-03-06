@@ -33,6 +33,7 @@ export const EmployeeForm = ({ employee, submitButtonLabel, isMutating, onSubmit
           .positive({ message: t('Age must be a positive number') }),
         salary: z.coerce
           .number({ required_error: t('Salary is required'), invalid_type_error: t('Salary must be a number') })
+          .int({ message: t('Salary must be an integer') })
           .positive({ message: t('Salary must be a positive number') }),
         profile_image: z
           .string({ required_error: t('Profile image URL is required') })

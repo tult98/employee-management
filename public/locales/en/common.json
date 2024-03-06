@@ -17,6 +17,7 @@
   "Address is required": "Address is required",
   "Email is required": "Email is required",
   "Age must be an integer": "Age must be an integer",
+  "Salary must be an integer": "Salary must be an integer",
   "Age must be a positive number": "Age must be a positive number",
   "Age is required": "Age is required",
   "Salary must be a positive number": "Salary must be a positive number",

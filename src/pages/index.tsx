@@ -23,16 +23,16 @@ export default function Home() {
           <li>i18next</li>
           <li>React Toastify for notification</li>
           <li>SWR and axios for fetching API</li>
-          <li>React Hook Form & yup for validation form</li>
+          <li>React Hook Form & zod for validation form</li>
           <li>Typescript</li>
         </ul>
         <h3 className='text-lg font-medium my-2'>Backend</h3>
         <p>I mockup with json-server which provide me a restful api server</p>
         <h3 className='my-2 text-lg font-medium'>Deploy</h3>
         <p>Deploy with vercel</p>
-        <h3 className='my-2 text-lg font-medium'>Requirement</h3>
+        <h3 className='my-2 text-lg font-medium'>Requirements:</h3>
         <ul className='list-decimal ml-4'>
-          <li className='text-green-600'>In Add employee page create a from to add employee details. (Done)</li>
+          <li className='text-green-600'>In Add employee page create a form to add employee details. (Done)</li>
           <li className='text-green-600'>In Edit employee we can change data of any employee. (Done)</li>
           <li className='text-green-600'>
             View employee page will contain list of all employees which I can edit or delete. (Done)
