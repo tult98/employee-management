@@ -47,6 +47,38 @@ export default function Home() {
             In any tab, if we reload page then it will open same tab instead of going to first tab. (Done)
           </li>
         </ul>
+        <h3 className='my-2 text-lg font-medium'>References:</h3>
+        <ul className='list-disc ml-4'>
+          <li>
+            <a
+              className='text-blue-500 hover:underline'
+              href='https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md'
+            >
+              Project Structure
+            </a>
+          </li>
+          <li>
+            <a
+              className='text-blue-500 hover:underline'
+              href='https://www.patterns.dev/react/presentational-container-pattern'
+            >
+              Container/Presentational Pattern
+            </a>
+          </li>
+          <li>
+            <a className='text-blue-500 hover:underline' href='https://www.patterns.dev/react/render-props-pattern'>
+              Render Props Pattern
+            </a>
+          </li>
+          <li>
+            <a
+              className='text-blue-500 hover:underline'
+              href='https://react-typescript-cheatsheet.netlify.app/docs/advanced/patterns_by_usecase#wrappingmirroring'
+            >
+              Wrapping/Mirroring Pattern
+            </a>
+          </li>
+        </ul>
       </main>
     </BaseLayout>
   )
