@@ -2,7 +2,7 @@ interface IProps {
   countryCode: string
 }
 
-function FlagIcon({ countryCode = '' }: IProps) {
+export const FlagIcon = ({ countryCode = '' }: IProps) => {
   if (countryCode === 'en') {
     countryCode = 'gb'
   }
@@ -13,5 +13,3 @@ function FlagIcon({ countryCode = '' }: IProps) {
 
   return <span className={`fi inline-block mr-2 fi-${countryCode}`} />
 }
-
-export default FlagIcon

@@ -1,4 +1,3 @@
-import { TYPE } from '@/components/EmployeeForm'
 import { request } from '@/services/request'
 import { IEmployee } from '@/types/employee'
 
@@ -12,17 +11,24 @@ export const getEmployees = async () => {
   }
 }
 
-export const createOrUpdateEmployee = async (url: string, { arg }: { arg: { employee: IEmployee; type: TYPE } }) => {
+export const createNewEmployee = async (employee: IEmployee) => {
   try {
-    let response
-    if (arg.type === TYPE.CREATE) {
-      response = await request.post(url, arg.employee)
-    } else {
-      response = await request.put(url, arg.employee)
-    }
+    const response = await request.post('/employees', employee)
 
     return response.data
-  } catch (error: any) {
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
+}
+
+export const editAnEmployee = async (employee: IEmployee, id?: number) => {
+  try {
+    if (!id) return
+    const response = await request.put(`/employees/${id}`, employee)
+
+    return response.data
+  } catch (error) {
     console.error(error)
     throw error
   }

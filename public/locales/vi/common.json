@@ -19,6 +19,8 @@
   "Age must be an integer": "Tuổi phải là số nguyên",
   "Age must be a positive number": "Tuổi phải là số dương",
   "Age is required": "Tuổi là bắt buộc",
+  "Age must be a number": "Tuổi phải là số",
+  "Salary must be a number": "Lương phải là số",
   "Salary must be a positive number": "Lương phải là số dương",
   "Salary is required": "Lương là bắt buộc",
   "Invalid URL format for profile image": "Định dạng URL ảnh đại diện không hợp lệ",

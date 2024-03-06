@@ -19,7 +19,7 @@ interface IProps {
   mutate: KeyedMutator<IEmployee[]>
 }
 
-export default function EmployeeDeleteConfirm({ isOpen, setIsOpen, employee, mutate }: IProps) {
+export const EmployeeDeleteConfirm = ({ isOpen, setIsOpen, employee, mutate }: IProps) => {
   const { t } = useTranslation()
   const { data, isMutating, trigger, error } = useSWRMutation(
     employee ? `/employees/${employee.id}` : undefined,
@@ -47,7 +47,7 @@ export default function EmployeeDeleteConfirm({ isOpen, setIsOpen, employee, mut
       mutate()
       return
     }
-  }, [isMutating, data, error])
+  }, [isMutating, data, error, mutate, setIsOpen, t])
 
   return (
     <Dialog

@@ -1,21 +1,20 @@
 import GroupIcon from '@mui/icons-material/Group'
 import HomeIcon from '@mui/icons-material/Home'
-import { Box, Container, Divider, Drawer, List, ListItemButton, Toolbar } from '@mui/material'
+import { Box, Container, Drawer, List, ListItemButton, Toolbar } from '@mui/material'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 
+import { SelectLanguage } from '@/components'
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
-import { useTranslation } from 'next-i18next'
 import 'react-toastify/dist/ReactToastify.css'
-import SelectLanguage from '@/components/SelectLanguage'
 
 const drawerWidth = 240
 
-const BaseLayout = ({ children }: { children: React.ReactNode }) => {
+export const BaseLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter()
   const { t } = useTranslation()
 
@@ -89,5 +88,3 @@ const BaseLayout = ({ children }: { children: React.ReactNode }) => {
     </>
   )
 }
-
-export default BaseLayout

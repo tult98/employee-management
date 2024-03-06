@@ -1,24 +1,14 @@
-import EmployeeForm, { TYPE } from '@/components/EmployeeForm'
-import BaseLayout from '@/components/layouts/BaseLayout'
+import { EditEmployeeContainer } from '@/@features/employees'
+import { BaseLayout } from '@/components'
 import { request } from '@/services/request'
 import { IEmployee } from '@/types/employee'
 import { GetServerSideProps } from 'next'
-import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useEffect } from 'react'
-import { toast } from 'react-toastify'
 
-const EmployeeEditPage = ({ employee }: { employee: IEmployee | undefined }) => {
-  const { t } = useTranslation()
-
-  useEffect(() => {
-    if (!employee) toast.error(t('Cannot get the employee data at the moment'))
-  }, [employee])
-
+const EmployeeEditPage = ({ employee }: { employee?: IEmployee }) => {
   return (
     <BaseLayout>
-      <h1 className='text-2xl font-semibold'>{t('Edit employee')}</h1>
-      <EmployeeForm employee={employee} type={TYPE.EDIT} />
+      <EditEmployeeContainer employee={employee} />
     </BaseLayout>
   )
 }

@@ -2,11 +2,11 @@ import { uploadImage } from '@/services/cloudinray'
 import PhotoCamera from '@mui/icons-material/PhotoCamera'
 import Avatar from '@mui/material/Avatar'
 import IconButton from '@mui/material/IconButton'
-import { useEffect, useState } from 'react'
 import { useTranslation } from 'next-i18next'
+import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 
-const AvatarInputField = ({ onChange, value, error }: any) => {
+export const AvatarInputField = ({ onChange, value, error, clearErrors }: any) => {
   const { t } = useTranslation()
   const [isHover, setIsHover] = useState(false)
   const [avatarObjectUrl, setAvatarObjectUrl] = useState<string>()
@@ -23,6 +23,7 @@ const AvatarInputField = ({ onChange, value, error }: any) => {
         try {
           const url = await uploadImage(avatar)
           onChange(url)
+          clearErrors('profile_image')
           toast.success(t('Your image has been uploaded to server'))
         } catch (error) {
           console.log('error', error)
@@ -30,7 +31,7 @@ const AvatarInputField = ({ onChange, value, error }: any) => {
         }
       }
     })()
-  }, [avatar])
+  }, [avatar, clearErrors, onChange, t])
 
   const handleMouseEnter = () => {
     setIsHover(true)
@@ -70,5 +71,3 @@ const AvatarInputField = ({ onChange, value, error }: any) => {
     </div>
   )
 }
-
-export default AvatarInputField

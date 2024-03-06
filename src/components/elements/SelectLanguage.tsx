@@ -1,9 +1,9 @@
-import FlagIcon from '@/components/FlagIcon'
+import { FlagIcon } from '@/components'
+import { setCookie } from 'cookies-next'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { setCookie } from 'cookies-next';
 
-const SelectLanguage = () => {
+export const SelectLanguage = () => {
   const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()
 
@@ -14,7 +14,7 @@ const SelectLanguage = () => {
   const handleLanguageChange = (language: string) => {
     setIsOpen(false)
     const { pathname, query, asPath } = router
-    setCookie('NEXT_LOCALE', language, )
+    setCookie('NEXT_LOCALE', language)
     router.push({ pathname, query }, asPath, { locale: language })
   }
 
@@ -69,5 +69,3 @@ const SelectLanguage = () => {
     </div>
   )
 }
-
-export default SelectLanguage

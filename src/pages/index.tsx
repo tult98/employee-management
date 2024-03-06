@@ -1,4 +1,4 @@
-import BaseLayout from '@/components/layouts/BaseLayout'
+import { BaseLayout } from '@/components'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { Inter } from 'next/font/google'
@@ -34,13 +34,18 @@ export default function Home() {
         <ul className='list-decimal ml-4'>
           <li className='text-green-600'>In Add employee page create a from to add employee details. (Done)</li>
           <li className='text-green-600'>In Edit employee we can change data of any employee. (Done)</li>
-          <li className='text-green-600'>View employee page will contain list of all employees which I can edit or delete. (Done)</li>
+          <li className='text-green-600'>
+            View employee page will contain list of all employees which I can edit or delete. (Done)
+          </li>
           <li className='text-green-600'>View employee page will show the profile image in Avatar (Done)</li>
           <li className='text-green-600'>employee details will be (name, salary, age, profile image). (Done)</li>
-          <li className='text-green-600'>In edit employee tab for salary input, only allows positive number without decimal (Done)</li>
+          <li className='text-green-600'>
+            In edit employee tab for salary input, only allows positive number without decimal (Done)
+          </li>
           <li className='text-green-600'>In edit employee tab, able to upload profile image (Done)</li>
-          <li className='text-green-600'>In any tab, if we reload page then it will open same tab instead of going to first tab. (Done)</li>
-          <li className='text-red-600'>In view employee tab, to show truncated name if name character length is more than 25.</li>
+          <li className='text-green-600'>
+            In any tab, if we reload page then it will open same tab instead of going to first tab. (Done)
+          </li>
         </ul>
       </main>
     </BaseLayout>
