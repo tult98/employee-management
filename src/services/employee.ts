@@ -3,7 +3,7 @@ import { IEmployee } from '@/types/employee'
 
 export const getEmployees = async () => {
   try {
-    const response = await request.get('/employees')
+    const response = await request.get('/employees?_sort=id&_order=desc')
     return response.data
   } catch (error) {
     console.error(error)
